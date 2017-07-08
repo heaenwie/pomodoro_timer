@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <nav class="navbar navbar-default">
+          <ul class="nav nav-justified">
+            <li>Tomato timer</li>
+            <li>To-do list</li>
+            <li>About</li>
+          </ul>
+        </nav>
+      </div>
+      <div class="row">
+        <h1> Pomodoro timer </h1>
+      </div>
+      <div class="row">
+          <p> The Pomodoro Technique is a time management method developed by
+            Francesco Cirillo in the late 1980s.
+            The technique uses a timer to break down work into intervals,
+            traditionally 25 minutes in length, separated by short breaks.
+            These intervals are named pomodoros, the plural in English of the Italian word pomodoro (tomato),
+            after the tomato-shaped kitchen timer that Cirillo used as a university student.
+            Closely related to concepts such as timeboxing and iterative and incremental development used in software design,
+             the method has been adopted in pair programming contexts </p>
+      </div>
+      <div class="row">
+        <div class="center-block">
+          <p id="timer"></p>
+          <p id="status"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="center-block">
+          <button onclick="startTimer()" > Start </button>
+          <button onclick="pauseTimer()"> Pause </button>
+          <button onclick="resetTimer()"> Stop </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    document.getElementById("timer").innerHTML = "00:05"
+    var x;
+    var timeArray = document.getElementById("timer").innerHTML.split(":");
+    var minutes = parseInt(timeArray[0]);
+    var seconds = parseInt(timeArray[1]);
+    //var count = 0;
+
+    function startTimer() {
+      x = setInterval (function(){pomodoroTimer(minutes, seconds, count)}, 1000);
+    }
+    function pauseTimer() {
+      clearInterval(x);
+      document.getElementById("status").innerHTML = "PAUSED";
+    }
+    function resetTimer() {
+      clearInterval(x);
+      minutes = parseInt(timeArray[0]);
+      seconds = parseInt(timeArray[1]);
+      document.getElementById("timer").innerHTML = minutes+":"+seconds;
+      count = 0;
+    }
+    </script>
+  </body>
+</html>
