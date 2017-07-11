@@ -30,7 +30,10 @@
       </div>
       <div class="row">
         <div class="center-block">
-          <p id="timer"></p>
+          <button id="plus">+</button>
+          <p id="timer">25:00</p>
+          <button id="minus">-</button>
+          <p id="break"></p>
           <p id="status"></p>
         </div>
       </div>
@@ -44,25 +47,32 @@
     </div>
 
     <script>
-    document.getElementById("timer").innerHTML = "00:05"
     var x;
     var timeArray = document.getElementById("timer").innerHTML.split(":");
     var minutes = parseInt(timeArray[0]);
     var seconds = parseInt(timeArray[1]);
-    //var count = 0;
 
     function startTimer() {
-      x = setInterval (function(){pomodoroTimer(minutes, seconds, count)}, 1000);
+      x = setInterval (function(){pomodoroTimer(minutes, seconds)}, 1000);
     }
     function pauseTimer() {
-      clearInterval(x);
-      document.getElementById("status").innerHTML = "PAUSED";
+      if(document.getElementById("status").innerHTML == "")
+      {
+        clearInterval(x);
+        document.getElementById("status").innerHTML = "PAUSED";
+      }
+      else
+      {
+        startTimer();
+        document.getElementById("status").innerHTML = "";
+      }
     }
     function resetTimer() {
       clearInterval(x);
+      clearInterval(y);
       minutes = parseInt(timeArray[0]);
       seconds = parseInt(timeArray[1]);
-      document.getElementById("timer").innerHTML = minutes+":"+seconds;
+      document.getElementById("timer").innerHTML = minutes+" : "+seconds;
       count = 0;
     }
     </script>
